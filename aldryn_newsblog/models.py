@@ -211,7 +211,10 @@ class Article(TranslatedAutoSlugifyMixin,
             namespace = ''
 
         with override(language):
-            return reverse('{0}article-detail'.format(namespace), kwargs=kwargs)
+            try:
+                return reverse('{0}article-detail'.format(namespace), kwargs=kwargs)
+            except:
+                return '.'
 
     def get_search_data(self, language=None, request=None):
         """
