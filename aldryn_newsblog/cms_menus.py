@@ -22,7 +22,7 @@ class NewsBlogMenu(CMSAttachMenu):
     def get_queryset(self, request):
         """Returns base queryset with support for preview-mode."""
         queryset = Article.objects
-        if not (request.toolbar and toolbar_edit_mode_active(request)):
+        if not (getattr(request, 'toolbar', None) and toolbar_edit_mode_active(request)):
             queryset = queryset.published()
         return queryset
 
