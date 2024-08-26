@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.urls import NoReverseMatch
 from django.utils.translation import get_language_from_request
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from cms.apphook_pool import apphook_pool
 from cms.menu_bases import CMSAttachMenu
