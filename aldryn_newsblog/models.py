@@ -11,7 +11,7 @@ from django.db import connection, models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.timezone import now
 from django.utils.translation import override, gettext
 from django.utils.translation import gettext_lazy as _
@@ -232,9 +232,9 @@ class Article(TranslatedAutoSlugifyMixin,
         text_bits = [strip_tags(description)]
         for category in self.categories.all():
             text_bits.append(
-                force_text(category.safe_translation_getter('name')))
+                force_str(category.safe_translation_getter('name')))
         for tag in self.tags.all():
-            text_bits.append(force_text(tag.name))
+            text_bits.append(force_str(tag.name))
         if self.content:
             plugins = self.content.cmsplugin_set.filter(language=language)
             for base_plugin in plugins:
